@@ -8,14 +8,14 @@ var distanceUnit = 'mi';
  /**
   *  Maximum 100, check: https://dev.twitter.com/rest/reference/get/search/tweets
   */
-var count = 100;
-var latitude = 'latitude';
-var longitude = 'longitude';
-var endpoint = 'search/tweets';
+const count = 100;
+const latitude = 'latitude';
+const longitude = 'longitude';
+const resource = 'search/tweets';
 
 function getTweets(query, coordinates) {
     var geocode = coordinates[latitude] + ',' + coordinates[longitude] + ',' + defaultRadius + distanceUnit;
-    var promise = twitter.get(endpoint, { q: query, geocode: geocode, count: count }, function (error, data, response) {
+    var promise = twitter.get(endpoint, { q: query, geocode: geocode, count: count }, (error, data, response) =>  {
         if (error) {
             return error;
         }
