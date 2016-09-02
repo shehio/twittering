@@ -11,7 +11,7 @@ const created_at = 'created_at';
 const hashtags = 'hashtags';
 const entities = 'entities';
 const text = 'text';
-const defaultRadius = 1;
+const defaultRadius = 15;
 const distanceUnit = 'mi';
 const latitude = 'latitude';
 const longitude = 'longitude';
@@ -30,7 +30,7 @@ const count = 100;
 
 function getTweets(query, coordinates) {
     var geocode = coordinates[latitude] + ',' + coordinates[longitude] + ',' + defaultRadius + distanceUnit;
-    var promise = twitter.get(endpoint, { q: query, geocode: geocode, count: count }, (error, data, response) =>  {
+    var promise = twitter.get(resource, { q: query, geocode: geocode, count: count }, (error, data, response) =>  {
         if (error) {
             return error;
         }
