@@ -1,17 +1,32 @@
 'use strict';
-var Twit = require('twit');
-var config = require('./config');
-var twitter = new Twit(config);
-var defaultRadius = 1;
-var distanceUnit = 'mi';
+const Twit = require('twit');
+const config = require('./config');
+const twitter = new Twit(config);
 
+
+/**
+ * literals: self-explanatory
+ */
+const created_at = 'created_at';
+const hashtags = 'hashtags';
+const entities = 'entities';
+const text = 'text';
+const defaultRadius = 1;
+const distanceUnit = 'mi';
+const latitude = 'latitude';
+const longitude = 'longitude';
+const resource = 'search/tweets';
  /**
   *  Maximum 100, check: https://dev.twitter.com/rest/reference/get/search/tweets
   */
 const count = 100;
-const latitude = 'latitude';
-const longitude = 'longitude';
-const resource = 'search/tweets';
+
+/**
+ *  Get the tweets stream from twitter for a certain query, in a certain point on the map, spanning a certain area, by a predifined radius.
+ *  @param {string} query - searching query.
+ *  @param {json} coordinates - contains the longitude, and the latitude for the place. 
+ *  @returns {promise} promise - contains the stream of tweets.
+ */
 
 function getTweets(query, coordinates) {
     var geocode = coordinates[latitude] + ',' + coordinates[longitude] + ',' + defaultRadius + distanceUnit;
@@ -24,6 +39,12 @@ function getTweets(query, coordinates) {
     return promise;
 }
 
+/**
+ *  Operates extractFeatures (preprocessing) on every tweet in the collection of tweets.
+ *  @param {array}  tweets - contains tweets.
+ *  @returns {array} collection -  contains the preprocced tweets.
+ */
+
 function extractAll(tweets) {  
     var collection = new Array();
     tweets.forEach(function(tweet) { 
@@ -32,16 +53,21 @@ function extractAll(tweets) {
     return collection;
  }
  
+/**
+ *  Preprocess an individual tweet.
+ *  @param {object} tweet - a tweet as returned by twitter's API
+ *  @returns {object} features - only subsets needed of the tweet json.
+ */
 
 function extractFeatures(tweet) {
     var features = {};
-    features['created_at'] = tweet['created_at'];
-    features['hashtags'] = new Array();
-    var array = tweet['entities']['hashtags'];
+    features[created_at] = tweet[created_at];
+    features[hashtags] = new Array();
+    var array = tweet[entities][hashtags];
     array.forEach(function (hashtag) {
-        features['hashtags'].push(hashtag['text']);
+        features[hashtags].push(hashtag[text]);
     }, this);
-    features['text'] = tweet['text'];
+    features[text] = tweet[text];
     return features;
 }
 

@@ -1,0 +1,5 @@
+-- Refactor promises.
+-- Cut the middle man.
+-- Define the intended behavior for each and every function.
+-- Add automated tests for the aforementioned behavior.
+-- Add some rules to lint.

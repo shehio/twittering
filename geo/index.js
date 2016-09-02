@@ -6,12 +6,14 @@ const provider = 'google';
 const latitude = 'latitude';
 const longitude = 'longitude';
 
-var options = {
+const options = {
     provider: provider,
     apiKey: config.apiKey
 };
 
-var geocoder = NodeGeocoder(options);
+const geocoder = NodeGeocoder(options);
+
+
 function cityToCoords(city) {
     var promise = geocoder.geocode(city, function (error, response) {
         if (error) {
