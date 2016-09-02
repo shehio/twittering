@@ -1,22 +1,25 @@
 {
-  "name": "twittering",
-  "version": "1.0.0",
-  "description": "", 
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shehio/twittering.git"
-  },
-  "author": "shehio",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/shehio/twittering/issues"
-  },
-  "homepage": "https://github.com/shehio/twittering#readme",
-  "dependencies": {
-    "twit": "^2.2.4"
-  }
+    "name": "twittering",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/shehio/twittering.git"
+    },
+    "author": "shehio",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/shehio/twittering/issues"
+    },
+    "homepage": "https://github.com/shehio/twittering#readme",
+    "dependencies": {
+         "node-geocoder": "^3.14.0",
+        "twit": "^2.2.4"
+       
+    }
 }
