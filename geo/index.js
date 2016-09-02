@@ -12,8 +12,15 @@ const options = {
 };
 
 const geocoder = NodeGeocoder(options);
+/**
+ *  @todo: combine the two methods into a meaningful one.
+ */
 
-
+/**
+ *  gets the coordinates of a city.
+ *  @param {string} city - the name of the city.
+ *  @returns {promise} promise - the response of the API containg the city's coordinates among other properties.
+ */
 function cityToCoords(city) {
     var promise = geocoder.geocode(city, function (error, response) {
         if (error) {
@@ -23,9 +30,15 @@ function cityToCoords(city) {
     });
     return promise;
 }
+
 /**
+ *  @todo: throw an exception if the city is ambiguous.
+ */
+/**
+ * 
  *  extract the most important city (the first one).
- *  todo: throw an exception if the city is ambiguous.
+ *  @param {string} city - the name of the city.
+ *  @returns {object} - the latitude, and longitude combined in an object.
  */
 function extractCoords(city) {
     city = city.shift();
